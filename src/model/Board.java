@@ -39,4 +39,8 @@ public class Board {
 	private void drawMap() {
 		System.out.print(toString());
 	}
+
+	public Square[][] getMap() {
+		return matrix;
+	}
 }
