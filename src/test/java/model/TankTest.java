@@ -20,8 +20,8 @@ public class TankTest {
 
 	public boolean getEntityMap(Board board, Tank tank) {
 
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < board.getMap().length; i++) {
+			for (int j = 0; j < board.getMap().length; j++) {
 				if (board.getMap()[i][j].getEntity() != null) {
 					System.out.print(board.getMap()[i][j].drawSymbol());
 					assertEquals(tank, board.getMap()[i][j].getEntity());
