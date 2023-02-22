@@ -1,8 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Square {
 
 	private Entity entity = null;
+	private final Collection<Entity> entities = new ArrayList<>();
 	// private static String symbol = "d";
 
 	public Square() {
@@ -20,6 +24,11 @@ public class Square {
 
 	public void setEntity(Entity entity) {
 		this.entity = entity;
+		entities.add(entity);
+	}
+
+	public Collection<Entity> getEntities() {
+		return entities;
 	}
 
 }
