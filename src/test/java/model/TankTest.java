@@ -4,19 +4,24 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import controller.Player;
+
 public class TankTest {
 
 	@Test
 	public void createTankTest() {
 		/* create one Entity */
-		Tank tank = new Tank(new Position(1, 1));
-		Board board = new Board(tank);
+		Player player = new Player();
+		Board board = new Board(player);
+		checkEntitiesOnBoard(board, player.getEntity());
+	}
 
-		checkEntitiesOnBoard(board, tank);
+	public void moveTankTest() {
+
 	}
 
 	@SuppressWarnings("deprecation")
-	public void checkEntitiesOnBoard(Board board, Tank tank) {
+	public void checkEntitiesOnBoard(Board board, Entity entity) {
 		int emptySquares = 0;
 		int filledSquares = 0;
 		int totalSquares = (int) Math.pow(board.getMap().length, 2);
@@ -26,7 +31,7 @@ public class TankTest {
 				if (board.getMap()[x][y].getEntities().isEmpty()) {
 					emptySquares = emptySquares + 1;
 				} else {
-					assertEquals(tank, board.getMap()[x][y].getEntity());
+					assertEquals(entity, board.getMap()[x][y].getEntity());
 					filledSquares = filledSquares + 1;
 				}
 			}

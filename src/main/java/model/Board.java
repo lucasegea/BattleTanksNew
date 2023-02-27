@@ -1,23 +1,41 @@
 package model;
 
+import java.awt.event.KeyListener;
+
+import controller.Player;
+import view.ClearConsole;
+
 public class Board {
 	// List <String> list = new ArrayList<String>();
-	Square matrix[][] = new Square[3][3];
+	Square matrix[][] = new Square[6][6];
 
-	public Board(Entity entity) {
+	public Board(Player player) {
 		initialize();
-		setEntity(entity);
+		setEntity(player.getEntity());
 		drawMap();
 	}
 
 	private void initialize() {
-		// matrix[1][1] = new Square(entity);
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix.length; j++) {
 				matrix[i][j] = new Square();
-				// matrix[1][1] = new Square(square);
 			}
 		}
+	}
+
+	public void update(Entity entity) {
+		ClearConsole.clearConsole();
+		initialize();
+		setEntity(entity);
+		// entity.move(entity);
+		drawMap();
+	}
+
+	public void move(Direction direction, Entity entity) {
+		entity.setDirection(direction);
+		entity.movePosition(entity);
+		update(entity);
+
 	}
 
 	private void setEntity(Entity entity) {
@@ -43,4 +61,10 @@ public class Board {
 	public Square[][] getMap() {
 		return matrix;
 	}
+
+	public void addKeyListener(KeyListener keyEvent) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

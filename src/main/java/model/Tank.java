@@ -1,14 +1,12 @@
 package model;
 
-public class Tank extends Entity {
+public class Tank extends Movible {
 
-	// private Integer WIDTH = 50;
-	// private Integer HEIGHT = 100;
 	private static final String SYMBOL = "x";
+	public Direction direction;
 
 	public Tank(Position position) {
 		super(SYMBOL, position);
-
 	}
 
 }
