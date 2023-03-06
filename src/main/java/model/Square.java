@@ -2,10 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class Square {
 
-	private Entity entity = null;
 	private final Collection<Entity> entities = new ArrayList<>();
 	// private static String symbol = "d";
 
@@ -15,20 +15,21 @@ public class Square {
 
 	public String drawSymbol() {
 
-		return entity == null ? " " : entity.getSymbol();
+		return entities.isEmpty() ? " "
+				: String.join(" ", entities.stream().map(Entity::getSymbol).collect(Collectors.toList()));
 	}
 
-	public Entity getEntity() {
-		return entity;
-	}
-
-	public void setEntity(Entity entity) {
-		this.entity = entity;
+	public void addEntity(Entity entity) {
 		entities.add(entity);
 	}
 
 	public Collection<Entity> getEntities() {
 		return entities;
+	}
+
+	public void removeEntity(Entity entity) {
+		entities.remove(entity);
+
 	}
 
 }

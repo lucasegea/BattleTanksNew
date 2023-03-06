@@ -16,7 +16,7 @@ public class Controller {
 
 	}
 
-	public void Run() {
+	public void Run() throws InterruptedException {
 		Player player = new Player();
 		Window window = new Window();
 		window.setVisible(true);

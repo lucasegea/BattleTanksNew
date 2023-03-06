@@ -3,16 +3,16 @@ package model;
 import java.awt.event.KeyListener;
 
 import controller.Player;
-import view.ClearConsole;
 
 public class Board {
 	// List <String> list = new ArrayList<String>();
-	Square matrix[][] = new Square[6][6];
+
+	Square matrix[][] = new Square[Constants.BOARD_WIDTH][Constants.BOARD_HEIGHT];
+	private Object Player;
 
 	public Board(Player player) {
 		initialize();
 		setEntity(player.getEntity());
-		drawMap();
 	}
 
 	private void initialize() {
@@ -23,23 +23,42 @@ public class Board {
 		}
 	}
 
-	public void update(Entity entity) {
-		ClearConsole.clearConsole();
-		initialize();
+	public void move(Direction direction, Movible entity) {
+		// boolean moveIt = false;
+		entity.setDirection(direction);
+		entity.setTentativePosition();
+		remove(entity);
+		// entity.setDirection(direction);
+		System.out.println(entity.getDirection());
+		entity.movePosition();
 		setEntity(entity);
-		// entity.move(entity);
-		drawMap();
+		// entity.getNewPosition();
+		// System.out.println("getX new" + entity.getNewPosition().getX());
+		if (checkBoundsOfBoard(entity)) {
+			// System.out.println("getX" + entity.getPosition().getX());
+			// remove(entity);
+
+			// moveIt = true;
+			// entity.actualPosition();
+		}
+
 	}
 
-	public void move(Direction direction, Entity entity) {
-		entity.setDirection(direction);
-		entity.movePosition(entity);
-		update(entity);
+	public boolean checkBoundsOfBoard(Movible entity) {
 
+		if (entity.getNewPosition().getX() >= 0) {
+			System.out.println("getX" + entity.getNewPosition().getX());
+			return true;
+		}
+		return false;
+	}
+
+	private void remove(Movible entity) {
+		matrix[entity.getPosition().getY()][entity.getPosition().getX()].removeEntity(entity);
 	}
 
 	private void setEntity(Entity entity) {
-		matrix[entity.getPosition().getY()][entity.getPosition().getX()].setEntity(entity);
+		matrix[entity.getPosition().getY()][entity.getPosition().getX()].addEntity(entity);
 	}
 
 	@Override
@@ -52,10 +71,6 @@ public class Board {
 			builder.append("\n");
 		}
 		return builder.toString();
-	}
-
-	private void drawMap() {
-		System.out.print(toString());
 	}
 
 	public Square[][] getMap() {
