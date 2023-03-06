@@ -3,9 +3,7 @@ package model;
 public abstract class Entity implements Showable {
 	private final String symbol;
 	protected Position position;
-	private Direction direction = Direction.UP;
-	protected int x;
-	protected int y;
+	private Direction direction = Direction.LEFT;
 
 	public Entity(String symbol, Position position) {
 		this.symbol = symbol;
@@ -32,15 +30,6 @@ public abstract class Entity implements Showable {
 
 	public void setDirection(Direction direction) {
 		this.direction = direction;
-	}
-
-	public void movePosition(Entity entity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void move(Entity entity) {
-
 	}
 
 }

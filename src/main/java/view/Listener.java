@@ -19,6 +19,7 @@ public class Listener {
 		this.board = board;
 		this.player = player;
 		KeyEvents(window.getTextField());
+		System.out.println(board);
 	}
 
 	public void KeyEvents(JTextField jTextField) {
@@ -38,11 +39,10 @@ public class Listener {
 
 			@Override
 			public void keyPressed(KeyEvent key) {
-
 				switch (key.getKeyCode()) {
-				case KeyEvent.VK_UP:
+				case KeyEvent.VK_UP: {
 					board.move(Direction.UP, player.getEntity());
-					// running = false;
+				}
 					break;
 				case KeyEvent.VK_DOWN:
 					board.move(Direction.DOWN, player.getEntity());
@@ -57,6 +57,8 @@ public class Listener {
 					System.out.println("Presionaste una tecla no reconocida");
 					break;
 				}
+				ClearConsole.clearConsole();
+				System.out.println(board);
 
 			}
 

@@ -2,38 +2,53 @@ package model;
 
 public class Movible extends Entity {
 
-	// Position newPosition = new Position(x, y);
+	protected Position newPosition = new Position(position.getX(), position.getY());
 
 	public Movible(String symbol, Position position) {
 		super(symbol, position);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void movePosition(Entity entity) {
-		// TODO Auto-generated method stub
-		super.movePosition(entity);
-		Direction dir = entity.getDirection();
-		position = entity.getPosition();
-		x = position.getX();
-		y = position.getY();
+	public void movePosition() {
+		setPosition(newPosition);
 
+		/*
+		 * Direction dir = getDirection(); position = getPosition(); x =
+		 * position.getX(); y = position.getY();
+		 *
+		 * switch (dir) { case UP: { position.setY(y - 1); setNewPosition(position);
+		 * break; } case DOWN: { position.setY(y + 1); setNewPosition(position); break;
+		 * } case RIGHT: { System.out.println(position.getX()); position.setX(x + 1);
+		 * setNewPosition(position); System.out.println(newPosition.getX()); break; }
+		 * case LEFT: { // System.out.println(position.getX()); position.setX(x - 1);
+		 * setNewPosition(position); System.out.println(newPosition.getX()); break; }
+		 * default: break;
+		 *
+		 * }
+		 */
+	}
+
+	public void setTentativePosition() {
+		Direction dir = getDirection();
+		position = getPosition();
+		int x = position.getX();
+		int y = position.getY();
 		switch (dir) {
 		case UP: {
-			entity.position.setY(y - 1);
-			entity.position.setX(x);
+			setNewPosition(new Position(x, y - 1));
 			break;
 		}
 		case DOWN: {
-			entity.position.setY(y + 1);
+			setNewPosition(new Position(x, y + 1));
 			break;
 		}
 		case RIGHT: {
-			entity.position.setX(x + 1);
+			setNewPosition(new Position(x + 1, y));
 			break;
 		}
 		case LEFT: {
-			entity.position.setX(x - 1);
+			setNewPosition(new Position(x - 1, y));
+
 			break;
 		}
 		default:
@@ -42,9 +57,12 @@ public class Movible extends Entity {
 		}
 	}
 
-	@Override
-	public void move(Entity entity) {
-		super.move(entity);
+	public Position getNewPosition() {
+		return newPosition;
+	}
+
+	public void setNewPosition(Position newPosition) {
+		this.newPosition = newPosition;
 	}
 
 }
