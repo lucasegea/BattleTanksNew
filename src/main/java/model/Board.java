@@ -24,30 +24,21 @@ public class Board {
 	}
 
 	public void move(Direction direction, Movible entity) {
-		// boolean moveIt = false;
+
 		entity.setDirection(direction);
 		entity.setTentativePosition();
-		remove(entity);
-		// entity.setDirection(direction);
-		System.out.println(entity.getDirection());
-		entity.movePosition();
-		setEntity(entity);
-		// entity.getNewPosition();
-		// System.out.println("getX new" + entity.getNewPosition().getX());
 		if (checkBoundsOfBoard(entity)) {
-			// System.out.println("getX" + entity.getPosition().getX());
-			// remove(entity);
-
-			// moveIt = true;
-			// entity.actualPosition();
+			remove(entity);
+			entity.movePosition();
+			setEntity(entity);
 		}
 
 	}
 
 	public boolean checkBoundsOfBoard(Movible entity) {
 
-		if (entity.getNewPosition().getX() >= 0) {
-			System.out.println("getX" + entity.getNewPosition().getX());
+		if (entity.getNewPosition().getX() >= 0 && entity.getNewPosition().getX() < Constants.BOARD_WIDTH
+				&& entity.getNewPosition().getY() >= 0 && entity.getNewPosition().getY() < Constants.BOARD_HEIGHT) {
 			return true;
 		}
 		return false;

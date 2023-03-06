@@ -31,7 +31,7 @@ public class TankTest {
 				if (board.getMap()[x][y].getEntities().isEmpty()) {
 					emptySquares = emptySquares + 1;
 				} else {
-					assertEquals(entity, board.getMap()[x][y].getEntity());
+					assertEquals(entity, board.getMap()[x][y].getEntities());
 					filledSquares = filledSquares + 1;
 				}
 			}

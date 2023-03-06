@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class Square {
 
 	private final Collection<Entity> entities = new ArrayList<>();
-	// private static String symbol = "d";
 
 	public Square() {
 
