@@ -1,19 +1,25 @@
 package model;
 
+import java.awt.Dimension;
+
 public abstract class Entity implements Showable {
 	private final String symbol;
 	protected Position position;
-	private Direction direction = Direction.LEFT;
+	protected Dimension dimension;
 
-	public Entity(String symbol, Position position) {
+	public Entity(String symbol, Position position, Dimension dimension) {
 		this.symbol = symbol;
+		this.dimension = dimension;
 		setPosition(position);
-		setDirection(direction);
 	}
 
 	@Override
 	public String getSymbol() {
 		return symbol;
+	}
+
+	public Dimension getDimension() {
+		return dimension;
 	}
 
 	public Position getPosition() {
@@ -23,13 +29,4 @@ public abstract class Entity implements Showable {
 	public void setPosition(Position position) {
 		this.position = position;
 	}
-
-	public Direction getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Direction direction) {
-		this.direction = direction;
-	}
-
 }

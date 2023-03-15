@@ -1,12 +1,13 @@
 package model;
 
-public class Tank extends Movible {
+import java.awt.Dimension;
+
+public class Tank extends Movable {
 
 	private static final String SYMBOL = "x";
-	public Direction direction;
 
-	public Tank(Position position) {
-		super(SYMBOL, position);
+	public Tank(Position position, Dimension dimension) {
+		super(SYMBOL, position, dimension);
 	}
 
 }

@@ -1,29 +1,26 @@
 package controller;
 
-import model.Movible;
+import java.awt.Dimension;
+
+import model.Movable;
 import model.Position;
 import model.Tank;
 
 public class Player {
 
-	private int x;
-	private int y;
-	Position position = new Position(3, 3);
-	Tank tank = new Tank(position);
+	Position position = new Position(0, 0);
+	Dimension dimension = new Dimension(3, 3);
+	Tank tank = new Tank(position, dimension);
 
 	public Player() {
 
-		// updatePosition(tank);
 	}
 
 	public void getInstance() {
 	}
 
-	public Movible getEntity() {
+	public Movable getEntity() {
 		return tank;
 	}
 
-	public void updatePosition(Tank tank) {
-		tank.setPosition(tank.getNewPosition());
-	}
 }

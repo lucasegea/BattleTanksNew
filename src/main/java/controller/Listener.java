@@ -1,25 +1,24 @@
-package view;
+package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
 
-import controller.Player;
 import model.Board;
-import model.Direction;
+import view.Window;
 
 public class Listener {
 
-	private final Board board;
 	private final Player player;
+	private final Board board;
+	public boolean keyPressed = false;
 
 	public Listener(Window window, Player player, Board board) {
-
 		this.board = board;
 		this.player = player;
+		// board = player.getBoard();
 		KeyEvents(window.getTextField());
-		System.out.println(board);
 	}
 
 	public void KeyEvents(JTextField jTextField) {
@@ -37,29 +36,16 @@ public class Listener {
 
 			}
 
+			public boolean getKeyPressed() {
+				return keyPressed;
+			}
+
 			@Override
 			public void keyPressed(KeyEvent key) {
-				switch (key.getKeyCode()) {
-				case KeyEvent.VK_UP: {
-					board.move(Direction.UP, player.getEntity());
-				}
-					break;
-				case KeyEvent.VK_DOWN:
-					board.move(Direction.DOWN, player.getEntity());
-					break;
-				case KeyEvent.VK_RIGHT:
-					board.move(Direction.RIGHT, player.getEntity());
-					break;
-				case KeyEvent.VK_LEFT:
-					board.move(Direction.LEFT, player.getEntity());
-					break;
-				default:
-					System.out.println("Presionaste una tecla no reconocida");
-					break;
-				}
-				ClearConsole.clearConsole();
-				System.out.println(board);
 
+				player.getEntity().move(key);
+				board.move(player.getEntity());
+				keyPressed = true;
 			}
 
 		};
