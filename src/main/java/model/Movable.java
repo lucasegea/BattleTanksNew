@@ -1,18 +1,19 @@
 package model;
 
-import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
+import controller.Dimension;
 import model.directions.Directions;
 import model.directions.Down;
 import model.directions.Left;
 import model.directions.Right;
 import model.directions.Up;
 
-public class Movable extends Entity {
+public abstract class Movable extends Entity {
 
 	protected Position newPosition = new Position(position.getX(), position.getY());
+	public boolean isHorizontal;
 	private static final HashMap<Integer, Directions> KEY_TRANSLATOR = new HashMap<>();
 
 	static {
@@ -24,31 +25,19 @@ public class Movable extends Entity {
 
 	public Movable(String symbol, Position position, Dimension dimension) {
 		super(symbol, position, dimension);
-
-		// TODO Auto-generated constructor stub
 	}
 
 	public void movePosition() {
-		setPosition(newPosition);
-	}
-
-	public Position getNewPosition() {
-		return newPosition;
-	}
-
-	public void setNewPosition(Position newPosition) {
-		this.newPosition = newPosition;
+		setPosition(getNewPosition());
+		dimension.setOrientation(dimension.getNewOrientation());
 	}
 
 	public void move(KeyEvent e) {
 		Integer key = e.getKeyCode();
 		if (KEY_TRANSLATOR.containsKey(key)) {
 			setNewPosition(KEY_TRANSLATOR.get(key).apply(getPosition()));
-			// setDirection(KEY_TRANSLATOR.get(key));
+			KEY_TRANSLATOR.get(key).setOrientationHorizontal(dimension);
 		}
-		// setTentativePosition(KEY_TRANSLATOR.get(key).apply(position);)
-		// TODO Auto-generated method stub
-
 	}
 
 }

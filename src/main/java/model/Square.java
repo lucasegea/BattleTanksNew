@@ -28,7 +28,10 @@ public class Square {
 
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
+	}
 
+	public boolean contains(Entity entity) {
+		return entities.contains(entity);
 	}
 
 }
