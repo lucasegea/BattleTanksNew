@@ -3,42 +3,37 @@ package controller;
 public class Dimension {
 	private final int majorRatio;
 	private final int minorRatio;
-	public boolean isHorizontal;
-	private boolean isNewHorizontal;
+	private int verticalRatio;
+	private int horizontalRatio;
 
 	public Dimension(int minorRatio, int majorRatio) {
 		this.majorRatio = majorRatio;
 		this.minorRatio = minorRatio;
 	}
 
-	public int getHorizontalRatio() {
-		if (isHorizontal) {
-			return minorRatio;
-		}
+	public int getMinorRatio() {
+		return minorRatio;
+	}
+
+	public int getMajorRatio() {
 		return majorRatio;
 	}
 
 	public int getVerticalRatio() {
-		if (isHorizontal) {
-			return majorRatio;
-		}
-		return minorRatio;
+		return verticalRatio;
 	}
 
-	public void setNewOrientation(boolean isNewHorizontal) {
-		this.isNewHorizontal = isNewHorizontal;
+	public int getHorizontalRatio() {
+		return horizontalRatio;
 	}
 
-	public boolean getNewOrientation() {
-		return isNewHorizontal;
+	public void setVerticalRatio(int verticalRatio) {
+		this.verticalRatio = verticalRatio;
 	}
 
-	public void setOrientation(boolean isHorizontal) {
-		this.isHorizontal = isHorizontal;
-	}
+	public void setHorizontalRatio(int horizontalRatio) {
+		this.horizontalRatio = horizontalRatio;
 
-	public boolean getOrientation() {
-		return isHorizontal;
 	}
 
 }

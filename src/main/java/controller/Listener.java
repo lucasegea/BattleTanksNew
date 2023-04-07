@@ -12,12 +12,10 @@ public class Listener {
 
 	private final Player player;
 	private final Board board;
-	public boolean keyPressed = false;
 
 	public Listener(Window window, Player player, Board board) {
 		this.board = board;
 		this.player = player;
-		// board = player.getBoard();
 		KeyEvents(window.getTextField());
 	}
 
@@ -36,16 +34,12 @@ public class Listener {
 
 			}
 
-			public boolean getKeyPressed() {
-				return keyPressed;
-			}
-
 			@Override
 			public void keyPressed(KeyEvent key) {
 
-				player.getEntity().move(key);
+				player.move(key);
 				board.move(player.getEntity());
-				keyPressed = true;
+
 			}
 
 		};

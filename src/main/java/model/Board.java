@@ -32,19 +32,15 @@ public class Board {
 	}
 
 	public boolean checkBoundsOfBoard(Movable entity) {
-		if (entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() <= Constants.BOARD_WIDTH
-				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT - 1) {
-			return true;
-		}
-		return false;
+		return entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() <= Constants.BOARD_WIDTH
+				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT - 1;
+
 	}
 
 	private void remove(Movable entity) {
 		for (int y = entity.getMinorY(); y <= entity.getMajorY(); y++) {
 			for (int x = entity.getMinorX(); x <= entity.getMajorX(); x++) {
-				// if (matrix[y][x].contains(entity)) {
 				matrix[y][x].removeEntity(entity);
-				// }
 			}
 		}
 	}
@@ -76,6 +72,6 @@ public class Board {
 	public void update() throws InterruptedException {
 		ClearConsole.clearConsole();
 		System.out.println(this);
-		Thread.sleep(250);
+		Thread.sleep(125);
 	}
 }

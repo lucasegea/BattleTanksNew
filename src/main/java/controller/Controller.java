@@ -20,9 +20,9 @@ public class Controller {
 
 		while (true) {
 			board.update();
-			if (listener.keyPressed) {
-				board.update();
-			}
+			/*
+			 * if (listener.keyPressed) { board.update(); }
+			 */
 
 		}
 	}

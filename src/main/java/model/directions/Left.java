@@ -1,20 +1,18 @@
 package model.directions;
 
-import controller.Dimension;
 import model.Position;
+import model.Orientation.Horizontal;
+import model.Orientation.Orientation;
 
-public class Left extends Directions {
+public class Left extends Direction {
+	private static Orientation ORIENTATION = new Horizontal();
+
+	public Left() {
+		super(ORIENTATION);
+	}
 
 	@Override
 	public Position apply(Position position) {
-		int x = position.getX();
-		int y = position.getY();
-		return new Position(x - 1, y);
+		return new Position(position.getX() - 1, position.getY());
 	}
-
-	@Override
-	public void setOrientationHorizontal(Dimension dimension) {
-		dimension.setNewOrientation(true);
-	}
-
 }
