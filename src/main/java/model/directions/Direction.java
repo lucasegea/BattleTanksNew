@@ -14,7 +14,7 @@ public abstract class Direction {
 
 	public abstract Position apply(Position position);
 
-	public Dimension getNewOrientation(Dimension dimension) {
-		return orientation.setRatios(new Dimension(dimension.getMinorRatio(), dimension.getMajorRatio()));
+	public Orientation getNewOrientation(Dimension dimension) {
+		return orientation.setRatios(dimension);
 	}
 }

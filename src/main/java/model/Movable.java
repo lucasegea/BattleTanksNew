@@ -13,8 +13,7 @@ public class Movable extends Entity {
 
 	public void movePosition() {
 		setPosition(getNewPosition());
-
-		setDimension(getNewDimension());
+		setOrientation(getNewOrientation());
 	}
 
 	public void move(Direction direction) {

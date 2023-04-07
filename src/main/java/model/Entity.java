@@ -9,7 +9,6 @@ public abstract class Entity implements Showable {
 	protected Position position;
 	protected Dimension dimension;
 	private Position newPosition;
-	private Dimension newDimension;
 	public Orientation orientation = new Vertical();
 	private Orientation newOrientation;
 
@@ -34,35 +33,35 @@ public abstract class Entity implements Showable {
 	}
 
 	public int getMinorX() {
-		return position.getX() - dimension.getVerticalRatio();
+		return position.getX() - orientation.getVerticalRatio();
 	}
 
 	public int getMajorX() {
-		return position.getX() + dimension.getVerticalRatio();
+		return position.getX() + orientation.getVerticalRatio();
 	}
 
 	public int getMinorY() {
-		return position.getY() - dimension.getHorizontalRatio();
+		return position.getY() - orientation.getHorizontalRatio();
 	}
 
 	public int getMajorY() {
-		return position.getY() + dimension.getHorizontalRatio();
+		return position.getY() + orientation.getHorizontalRatio();
 	}
 
 	public int getPotencialMinorX() {
-		return newPosition.getX() - newDimension.getVerticalRatio();
+		return newPosition.getX() - newOrientation.getVerticalRatio();
 	}
 
 	public int getPotencialMajorX() {
-		return newPosition.getX() + newDimension.getVerticalRatio();
+		return newPosition.getX() + newOrientation.getVerticalRatio();
 	}
 
 	public int getPotencialMinorY() {
-		return newPosition.getY() - newDimension.getHorizontalRatio();
+		return newPosition.getY() - newOrientation.getHorizontalRatio();
 	}
 
 	public int getPotencialMajorY() {
-		return newPosition.getY() + newDimension.getHorizontalRatio();
+		return newPosition.getY() + newOrientation.getHorizontalRatio();
 	}
 
 	public void setPosition(Position position) {
@@ -75,18 +74,6 @@ public abstract class Entity implements Showable {
 
 	public void setNewPosition(Position newPosition) {
 		this.newPosition = newPosition;
-	}
-
-	public void setNewOrientation(Dimension newDimension) {
-		this.newDimension = newDimension;
-	}
-
-	public void setDimension(Dimension dimension) {
-		this.dimension = dimension;
-	}
-
-	public Dimension getNewDimension() {
-		return newDimension;
 	}
 
 	public void setNewOrientation(Orientation newOrientation) {
@@ -102,7 +89,7 @@ public abstract class Entity implements Showable {
 	}
 
 	public void setOrientation(Orientation newOrientation) {
-		orientation = orientation;
+		orientation = newOrientation;
 	}
 
 }

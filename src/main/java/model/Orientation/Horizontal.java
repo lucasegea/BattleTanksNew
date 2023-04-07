@@ -8,12 +8,13 @@ public class Horizontal extends Orientation {
 	}
 
 	@Override
-	public Dimension setRatios(Dimension dimension) {
+	public Orientation setRatios(Dimension dimension) {
 		if (dimension != null) {
-			dimension.setVerticalRatio(dimension.getMajorRatio());
-			dimension.setHorizontalRatio(dimension.getMinorRatio());
+			setVerticalRatio(dimension.getMajorRatio());
+			setHorizontalRatio(dimension.getMinorRatio());
 		}
-		return dimension;
+		return this;
+
 	}
 
 }
