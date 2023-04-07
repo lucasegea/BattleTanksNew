@@ -1,12 +1,14 @@
 package model;
 
-public class Tank extends Movible {
+import controller.Dimension;
+
+public class Tank extends Movable {
 
 	private static final String SYMBOL = "x";
-	public Direction direction;
+	private static final Dimension DIMENSION = new Dimension(1, 2);
 
 	public Tank(Position position) {
-		super(SYMBOL, position);
+		super(SYMBOL, position, DIMENSION);
 	}
 
 }

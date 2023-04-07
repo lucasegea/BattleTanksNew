@@ -4,14 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import controller.Player;
+import controller.Players.HumanPlayer;
 
 public class TankTest {
 
 	@Test
 	public void createTankTest() {
 		/* create one Entity */
-		Player player = new Player();
+		HumanPlayer player = new HumanPlayer();
 		Board board = new Board(player);
 		checkEntitiesOnBoard(board, player.getEntity());
 	}
@@ -31,7 +31,8 @@ public class TankTest {
 				if (board.getMap()[x][y].getEntities().isEmpty()) {
 					emptySquares = emptySquares + 1;
 				} else {
-					assertEquals(entity, board.getMap()[x][y].getEntity());
+					assertEquals(1, board.getMap()[x][y].getEntities().size());
+					assertEquals(entity, board.getMap()[x][y].getEntities().toArray()[0]);
 					filledSquares = filledSquares + 1;
 				}
 			}
