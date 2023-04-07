@@ -1,9 +1,10 @@
-package controller;
+package controller.Players;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 import model.Movable;
+import model.Position;
 import model.Tank;
 import model.directions.Direction;
 import model.directions.Down;
@@ -11,7 +12,7 @@ import model.directions.Left;
 import model.directions.Right;
 import model.directions.Up;
 
-public class Player {
+public class HumanPlayer extends Players {
 
 	private static final HashMap<Integer, Direction> KEY_TRANSLATOR = new HashMap<>();
 
@@ -22,7 +23,7 @@ public class Player {
 		KEY_TRANSLATOR.put(KeyEvent.VK_RIGHT, new Right());
 	}
 
-	Tank tank = new Tank();
+	Tank tank = new Tank(new Position(3, 3));
 
 	public void move(KeyEvent e) {
 		Integer key = e.getKeyCode();
@@ -31,7 +32,7 @@ public class Player {
 		}
 	}
 
-	public Player() {
+	public HumanPlayer() {
 	}
 
 	public void getInstance() {

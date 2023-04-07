@@ -1,15 +1,15 @@
 package model;
 
-import controller.Player;
+import controller.Players.HumanPlayer;
 import view.ClearConsole;
 
 public class Board {
 	// List <String> list = new ArrayList<String>();
 
 	Square matrix[][] = new Square[Constants.BOARD_WIDTH][Constants.BOARD_HEIGHT];
-	private Player player;
+	private HumanPlayer player;
 
-	public Board(Player player) {
+	public Board(HumanPlayer player) {
 		initialize();
 		setEntity(player.getEntity());
 		player = this.player;
@@ -56,9 +56,9 @@ public class Board {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		for (Square[] element : matrix) {
-			for (Square element2 : element) {
-				builder.append("[" + element2.drawSymbol() + "]");
+		for (Square[] column : matrix) {
+			for (Square square : column) {
+				builder.append("[" + square.drawSymbol() + "]");
 			}
 			builder.append("\n");
 		}

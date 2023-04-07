@@ -1,5 +1,6 @@
 package controller;
 
+import controller.Players.HumanPlayer;
 import model.Board;
 import view.Window;
 
@@ -12,7 +13,7 @@ public class Controller {
 	}
 
 	public void Run() throws InterruptedException {
-		Player player = new Player();
+		HumanPlayer player = new HumanPlayer();
 		Window window = new Window();
 		window.setVisible(true);
 		Board board = new Board(player);

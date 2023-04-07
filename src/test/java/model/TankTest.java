@@ -4,14 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import controller.Player;
+import controller.Players.HumanPlayer;
 
 public class TankTest {
 
 	@Test
 	public void createTankTest() {
 		/* create one Entity */
-		Player player = new Player();
+		HumanPlayer player = new HumanPlayer();
 		Board board = new Board(player);
 		checkEntitiesOnBoard(board, player.getEntity());
 	}
