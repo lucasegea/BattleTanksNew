@@ -1,5 +1,5 @@
 package controller.Players;
 
-public abstract class Players {
+public abstract class Player {
 
 }

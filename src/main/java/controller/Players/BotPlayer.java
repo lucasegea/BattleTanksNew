@@ -1,5 +1,5 @@
 package controller.Players;
 
-public class BotPlayer extends Players {
+public class BotPlayer extends Player {
 
 }

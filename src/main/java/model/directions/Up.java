@@ -1,15 +1,17 @@
 package model.directions;
 
 import model.Position;
-import model.Orientation.Orientation;
 import model.Orientation.Vertical;
 
 public class Up extends Direction {
+	private static final Up up = new Up();
 
-	private static Orientation ORIENTATION = new Vertical();
+	private Up() {
+		super(Vertical.getInstance());
+	}
 
-	public Up() {
-		super(ORIENTATION);
+	public static Up getInstance() {
+		return up;
 	}
 
 	@Override
