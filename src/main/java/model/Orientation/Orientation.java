@@ -4,26 +4,18 @@ import controller.Dimension;
 
 public abstract class Orientation {
 
-	private int verticalRatio;
-	private int horizontalRatio;
+	// private int verticalRatio;
+	// private int horizontalRatio;
 
-	public abstract Orientation setRatios(Dimension dimension);
+	// public abstract Orientation setRadius(Dimension dimension);
 
-	public int getVerticalRatio() {
-		return verticalRatio;
-	}
+	public abstract int getVerticalRadius(Dimension dimension);
 
-	public int getHorizontalRatio() {
-		return horizontalRatio;
-	}
+	public abstract int getHorizontalRadius(Dimension dimension);
 
-	public void setVerticalRatio(int verticalRatio) {
-		this.verticalRatio = verticalRatio;
-	}
-
-	public void setHorizontalRatio(int horizontalRatio) {
-		this.horizontalRatio = horizontalRatio;
-
+	public Orientation setRadius(Dimension dimension) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

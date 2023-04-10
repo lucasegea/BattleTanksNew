@@ -7,9 +7,6 @@ import view.Window;
 public class Controller {
 
 	public Controller() {
-		// while (true) {
-		// Run();
-		// }
 	}
 
 	public void Run() throws InterruptedException {
@@ -21,10 +18,6 @@ public class Controller {
 
 		while (true) {
 			board.update();
-			/*
-			 * if (listener.keyPressed) { board.update(); }
-			 */
-
 		}
 	}
 

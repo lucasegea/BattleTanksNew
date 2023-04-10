@@ -9,7 +9,7 @@ public abstract class Entity implements Showable {
 	protected Position position;
 	protected Dimension dimension;
 	private Position newPosition;
-	public Orientation orientation = new Vertical();
+	public Orientation orientation = Vertical.getInstance();
 	private Orientation newOrientation;
 
 	public Entity(String symbol, Position position, Dimension dimension) {
@@ -33,35 +33,35 @@ public abstract class Entity implements Showable {
 	}
 
 	public int getMinorX() {
-		return position.getX() - orientation.getVerticalRatio();
+		return position.getX() - orientation.getVerticalRadius(dimension);
 	}
 
 	public int getMajorX() {
-		return position.getX() + orientation.getVerticalRatio();
+		return position.getX() + orientation.getVerticalRadius(dimension);
 	}
 
 	public int getMinorY() {
-		return position.getY() - orientation.getHorizontalRatio();
+		return position.getY() - orientation.getHorizontalRadius(dimension);
 	}
 
 	public int getMajorY() {
-		return position.getY() + orientation.getHorizontalRatio();
+		return position.getY() + orientation.getHorizontalRadius(dimension);
 	}
 
 	public int getPotencialMinorX() {
-		return newPosition.getX() - newOrientation.getVerticalRatio();
+		return newPosition.getX() - newOrientation.getVerticalRadius(dimension);
 	}
 
 	public int getPotencialMajorX() {
-		return newPosition.getX() + newOrientation.getVerticalRatio();
+		return newPosition.getX() + newOrientation.getVerticalRadius(dimension);
 	}
 
 	public int getPotencialMinorY() {
-		return newPosition.getY() - newOrientation.getHorizontalRatio();
+		return newPosition.getY() - newOrientation.getHorizontalRadius(dimension);
 	}
 
 	public int getPotencialMajorY() {
-		return newPosition.getY() + newOrientation.getHorizontalRatio();
+		return newPosition.getY() + newOrientation.getHorizontalRadius(dimension);
 	}
 
 	public void setPosition(Position position) {

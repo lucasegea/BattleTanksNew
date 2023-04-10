@@ -9,11 +9,11 @@ public class Dimension {
 		this.minorRatio = minorRatio;
 	}
 
-	public int getMinorRatio() {
+	public int getMinorRadius() {
 		return minorRatio;
 	}
 
-	public int getMajorRatio() {
+	public int getMajorRadius() {
 		return majorRatio;
 	}
 

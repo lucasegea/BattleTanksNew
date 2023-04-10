@@ -11,7 +11,7 @@ public class Board {
 
 	public Board(HumanPlayer player) {
 		initialize();
-		setEntity(player.getEntity());
+		addEntity(player.getEntity());
 		player = this.player;
 	}
 
@@ -27,7 +27,7 @@ public class Board {
 		if (checkBoundsOfBoard(entity)) {
 			remove(entity);
 			entity.movePosition();
-			setEntity(entity);
+			addEntity(entity);
 		}
 	}
 
@@ -45,7 +45,7 @@ public class Board {
 		}
 	}
 
-	private void setEntity(Entity entity) {
+	private void addEntity(Entity entity) {
 		for (int y = entity.getMinorY(); y <= entity.getMajorY(); y++) {
 			for (int x = entity.getMinorX(); x <= entity.getMajorX(); x++) {
 				matrix[y][x].addEntity(entity);

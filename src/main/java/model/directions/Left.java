@@ -2,13 +2,17 @@ package model.directions;
 
 import model.Position;
 import model.Orientation.Horizontal;
-import model.Orientation.Orientation;
 
 public class Left extends Direction {
-	private static Orientation ORIENTATION = new Horizontal();
 
-	public Left() {
-		super(ORIENTATION);
+	private static final Left left = new Left();
+
+	private Left() {
+		super(Horizontal.getInstance());
+	}
+
+	public static Left getInstance() {
+		return left;
 	}
 
 	@Override

@@ -2,14 +2,17 @@ package model.directions;
 
 import model.Position;
 import model.Orientation.Horizontal;
-import model.Orientation.Orientation;
 
 public class Right extends Direction {
 
-	private static Orientation ORIENTATION = new Horizontal();
+	private static final Right right = new Right();
 
-	public Right() {
-		super(ORIENTATION);
+	private Right() {
+		super(Horizontal.getInstance());
+	}
+
+	public static Right getInstance() {
+		return right;
 	}
 
 	@Override

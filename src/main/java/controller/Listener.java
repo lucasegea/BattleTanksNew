@@ -17,10 +17,10 @@ public class Listener {
 	public Listener(Window window, HumanPlayer player, Board board) {
 		this.board = board;
 		this.player = player;
-		KeyEvents(window.getTextField());
+		keyEvents(window.getTextField());
 	}
 
-	public void KeyEvents(JTextField jTextField) {
+	public void keyEvents(JTextField jTextField) {
 		KeyListener keyEvent = new KeyListener() {
 
 			@Override
