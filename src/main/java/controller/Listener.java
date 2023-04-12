@@ -13,10 +13,12 @@ public class Listener {
 
 	private final HumanPlayer player;
 	private final Board board;
+	private final Level level;
 
-	public Listener(Window window, HumanPlayer player, Board board) {
+	public Listener(Window window, HumanPlayer player, Board board, Level level) {
 		this.board = board;
 		this.player = player;
+		this.level = level;
 		keyEvents(window.getTextField());
 	}
 
@@ -39,7 +41,7 @@ public class Listener {
 			public void keyPressed(KeyEvent key) {
 
 				player.move(key);
-				board.move(player.getEntity());
+				board.move(level.getTank());
 
 			}
 

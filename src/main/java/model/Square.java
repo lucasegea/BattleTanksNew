@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class Square {
 
 	private final Collection<Entity> entities = new ArrayList<>();
+	private Entity entity;
 
 	public Square() {
 
@@ -20,10 +21,15 @@ public class Square {
 
 	public void addEntity(Entity entity) {
 		entities.add(entity);
+		this.entity = entity;
 	}
 
 	public Collection<Entity> getEntities() {
 		return entities;
+	}
+
+	public Entity getEntity() {
+		return entity;
 	}
 
 	public void removeEntity(Entity entity) {

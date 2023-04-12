@@ -1,24 +1,27 @@
 package controller;
 
-import controller.Players.HumanPlayer;
-import model.Board;
-import view.Window;
+import model.Game;
+import view.ClearConsole;
 
 public class Controller {
 
+	// private Game game;
+
 	public Controller() {
+		Game.getInstance().initialize();
 	}
 
 	public void Run() throws InterruptedException {
-		HumanPlayer player = new HumanPlayer();
-		Window window = new Window();
-		window.setVisible(true);
-		Board board = new Board(player);
-		Listener listener = new Listener(window, player, board);
 
 		while (true) {
-			board.update();
+			update();
 		}
+	}
+
+	private void update() throws InterruptedException {
+		ClearConsole.clearConsole();
+		System.out.println(Game.getInstance().getLevel().getMap());
+		Thread.sleep(125);
 	}
 
 }

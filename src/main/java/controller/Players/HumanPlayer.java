@@ -3,8 +3,6 @@ package controller.Players;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
-import model.Movable;
-import model.Position;
 import model.Tank;
 import model.directions.Direction;
 import model.directions.Down;
@@ -23,22 +21,20 @@ public class HumanPlayer extends Player {
 		KEY_TRANSLATOR.put(KeyEvent.VK_RIGHT, Right.getInstance());
 	}
 
-	Tank tank = new Tank(new Position(3, 3));
+	private final Tank tank;
 
 	public void move(KeyEvent e) {
 		Integer key = e.getKeyCode();
 		if (KEY_TRANSLATOR.containsKey(key)) {
-			getEntity().move(KEY_TRANSLATOR.get(key));
+			tank.move(KEY_TRANSLATOR.get(key));
 		}
 	}
 
-	public HumanPlayer() {
+	public HumanPlayer(Tank tank) {
+		this.tank = tank;
 	}
 
 	public void getInstance() {
 	}
 
-	public Movable getEntity() {
-		return tank;
-	}
 }

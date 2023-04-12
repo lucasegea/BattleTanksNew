@@ -1,18 +1,17 @@
 package model;
 
-import controller.Players.HumanPlayer;
+import java.util.Collection;
+import java.util.HashSet;
+
 import view.ClearConsole;
 
 public class Board {
 	// List <String> list = new ArrayList<String>();
 
 	Square matrix[][] = new Square[Constants.BOARD_WIDTH][Constants.BOARD_HEIGHT];
-	private HumanPlayer player;
 
-	public Board(HumanPlayer player) {
+	public Board() {
 		initialize();
-		addEntity(player.getEntity());
-		player = this.player;
 	}
 
 	private void initialize() {
@@ -24,7 +23,7 @@ public class Board {
 	}
 
 	public void move(Movable entity) {
-		if (checkBoundsOfBoard(entity)) {
+		if (checkBoundsOfBoard(entity) && checkCollisions(getColisionsEntities(entity))) {
 			remove(entity);
 			entity.movePosition();
 			addEntity(entity);
@@ -35,6 +34,27 @@ public class Board {
 		return entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() <= Constants.BOARD_WIDTH
 				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT - 1;
 
+	}
+
+	public Collection<Entity> getColisionsEntities(Entity entity) {
+		Collection<Entity> colisionsList = new HashSet<>();
+
+		for (int y = entity.getPotencialMinorY(); y <= entity.getPotencialMajorY(); y++) {
+			for (int x = entity.getPotencialMinorX(); x <= entity.getPotencialMajorX(); x++) {
+				if (!(matrix[y][x].getEntity() == null)) {
+					colisionsList.add(matrix[y][x].getEntity());
+				}
+			}
+		}
+		colisionsList.remove(entity);
+		return colisionsList;
+	}
+
+	public boolean checkCollisions(Collection<Entity> colisionsList) {
+		if (colisionsList.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 
 	private void remove(Movable entity) {
@@ -51,6 +71,12 @@ public class Board {
 				matrix[y][x].addEntity(entity);
 			}
 		}
+	}
+
+	public void appendEntity(Entity entity) {
+		// if (checkBoundsOfBoard((Movable) entity)) {
+		addEntity(entity);
+		// }
 	}
 
 	@Override
