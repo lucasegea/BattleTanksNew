@@ -19,7 +19,7 @@ public class PlayerBot extends Player {
 
 			@Override
 			public void run() {
-				while (true && movable.getActive()) {
+				while (true && movable.isAlive()) {
 					doAction();
 					try {
 						sleep(400);

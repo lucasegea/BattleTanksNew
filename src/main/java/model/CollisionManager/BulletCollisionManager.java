@@ -13,15 +13,15 @@ public class BulletCollisionManager implements CollisionManager {
 	public void handleCollision(Movable bullet, Collection<Entity> collisions) {
 		Board map = Game.getInstance().getLevel().getMap();
 
-		if (!collisions.isEmpty() || !map.checkBoundsOfBoard(bullet)) {
+		if (!collisions.isEmpty() || !map.willBeInBounds(bullet)) {
 			map.remove(bullet);
-			bullet.setActive(false);
+			bullet.die();
 		}
 
 		for (Entity entity1 : collisions) {
 			entity1.setLife(-1);
 			if (entity1.getLife() == 0) {
-				entity1.setActive(false);
+				entity1.die();
 
 				map.removeEntity(entity1);
 

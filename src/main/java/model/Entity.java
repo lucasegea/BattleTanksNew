@@ -10,8 +10,7 @@ public abstract class Entity implements Showable {
 	protected Dimension dimension;
 	public Orientation orientation = Vertical.getInstance();
 	private int life = 2;
-	public boolean canmove = true;
-	private boolean active = true;
+	private boolean alive = true;
 
 	public Entity(String symbol, Position position, Dimension dimension) {
 		this.symbol = symbol;
@@ -68,8 +67,7 @@ public abstract class Entity implements Showable {
 	public void setLife(int i) {
 		life = life + i;
 		if (getLife() == 0) {
-			setActive(false);
-			Game.getInstance().getLevel().getMap().removeEntity(this);
+			die();
 		}
 	}
 
@@ -85,12 +83,13 @@ public abstract class Entity implements Showable {
 
 	public abstract boolean receptiveToDamage();
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void die() {
+		alive = false;
+		Game.getInstance().getLevel().getMap().removeEntity(this);
 	}
 
-	public void setCanMove(boolean canmove) {
-		this.canmove = canmove;
+	public boolean isAlive() {
+		return alive;
 	}
 
 	public void printDetails() {

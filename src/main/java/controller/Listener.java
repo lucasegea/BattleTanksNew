@@ -41,9 +41,7 @@ public class Listener {
 
 			@Override
 			public void keyPressed(KeyEvent key) {
-
 				player.doAction(key);
-				board.move(level.getTank()); // q lo haga el player
 
 			}
 

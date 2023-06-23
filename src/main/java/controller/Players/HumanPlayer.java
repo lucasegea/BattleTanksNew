@@ -36,8 +36,4 @@ public class HumanPlayer extends Player {
 	public HumanPlayer(Tank tank) {
 		this.tank = tank;
 	}
-
-	public void getInstance() {
-	}
-
 }
