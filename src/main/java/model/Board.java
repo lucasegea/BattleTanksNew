@@ -3,6 +3,8 @@ package model;
 import java.util.Collection;
 import java.util.HashSet;
 
+import model.Interaction.Interaction;
+import model.Interaction.InteractionManager;
 import view.ClearConsole;
 import view.DetailsViewGame;
 
@@ -23,27 +25,26 @@ public class Board {
 		}
 	}
 
-	public boolean move(Movable entity) {
-		if (checkBoundsOfBoard(entity) && checkCollisions(ControllCollisionsEntities(entity)) && entity.getActive()) {
-			remove(entity);
-			entity.movePosition();
-			addEntity(entity);
-			return true;
+	public boolean move(Movable movable) {
+		if (willBeInBounds(movable)) {
+			InteractionManager interactionManager = new InteractionManager();
+			for (Entity entity : getCollisions(movable)) {
+				interactionManager.add(new Interaction(movable, entity));
+			}
+			interactionManager.doActions();
+			if (interactionManager.canMove()) {
+				remove(movable);
+				movable.movePosition();
+				addEntity(movable);
+				return true;
+			}
+		} else {
+			movable.interactWithMapBorders();
 		}
 		return false;
 	}
 
-	public boolean checkBoundsOfBoard(Movable entity) {
-
-		if (entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() < Constants.BOARD_WIDTH
-				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT) {
-			return true;
-		}
-		entity.registerInteraction();
-		return false;
-	}
-
-	public Collection<Entity> ControllCollisionsEntities(Movable movable) {
+	public Collection<Entity> getCollisions(Movable movable) {
 		Collection<Entity> collisions = new HashSet<>();
 
 		for (int y = movable.getPotencialMinorY(); y <= movable.getPotencialMajorY(); y++) {
@@ -53,21 +54,13 @@ public class Board {
 		}
 		collisions.remove(movable);
 
-		for (Entity entity : collisions) {
-			movable.registerInteraction(entity);
-		}
-
 		return collisions;
 	}
 
-	public boolean checkCollisions(Collection<Entity> colisionsList) {
-
-		if (colisionsList.isEmpty()) {
-			return true;
-		}
-		return false;
+	public boolean willBeInBounds(Movable entity) {
+		return entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() < Constants.BOARD_WIDTH
+				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT;
 	}
-
 	public void remove(Movable entity) {
 		for (int y = entity.getMinorY(); y <= entity.getMajorY(); y++) {
 			for (int x = entity.getMinorX(); x <= entity.getMajorX(); x++) {

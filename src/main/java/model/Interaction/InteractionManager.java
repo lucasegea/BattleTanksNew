@@ -3,34 +3,29 @@ package model.Interaction;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.Board;
-import model.Entity;
-import model.Game;
-import model.Movable;
+import model.InteractionResult;
 
 public class InteractionManager {
 	Collection<Interaction> interactions = new HashSet<>();
-	Movable movable;
-	Entity otherEntity;
+	Collection<InteractionResult> interactionResults = new HashSet<>();
 
 	public void add(Interaction interaction) {
 		interactions.add(interaction);
-		workInteraction();
 	}
 
-	public void workInteraction() {
-		Board map = Game.getInstance().getLevel().getMap();
-
+	public void doActions() {
 		for (Interaction interaction : interactions) {
-			otherEntity = interaction.getEntity();
-			movable = interaction.getMovable();
-
-			if (!movable.makeDamage() && !otherEntity.isObstacle()) {
-				map.removeEntity(otherEntity);
-				// movable.getPowerUp();
-			}
-
+			interactionResults.add(interaction.interact());
 		}
+	}
+
+	public boolean canMove() {
+		for (InteractionResult interactionResult : interactionResults) {
+			if (!interactionResult.canMove()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

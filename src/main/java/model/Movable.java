@@ -1,7 +1,6 @@
 package model;
 
 import controller.Dimension;
-import model.Interaction.Interaction;
 import model.Orientation.Orientation;
 import model.directions.Direction;
 
@@ -10,8 +9,6 @@ public class Movable extends Entity {
 	private Position newPosition;
 	private Orientation newOrientation;
 	protected Direction direction;
-	public boolean canmove = true;
-	private boolean active = true;
 
 	public Movable(String symbol, Position position, Dimension dimension) {
 		super(symbol, position, dimension);
@@ -80,21 +77,11 @@ public class Movable extends Entity {
 		return true;
 	}
 
-	@Override
-	public void setActive(boolean active) {
-		this.active = active;
+	public InteractionResult interact(Entity otherEntity) {
+		return new InteractionResult(!otherEntity.isObstacle());
 	}
 
-	public boolean getActive() {
-		return active;
-	}
-
-	public Interaction registerInteraction(Entity otherEntity) {
-		setCanMove(false);
-		return new Interaction(this, otherEntity);
-	}
-
-	public void registerInteraction() {
+	public void interactWithMapBorders() {
 		// TODO Auto-generated method stub
 
 	}

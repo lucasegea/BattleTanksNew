@@ -33,11 +33,6 @@ public class Wall extends Entity {
 	}
 
 	@Override
-	public boolean isObstacle() {
-		return true;
-	}
-
-	@Override
 	public boolean makeDamage() {
 		return false;
 	}

@@ -15,9 +15,9 @@ public class TankCollisionManager implements CollisionManager {
 
 		for (Entity entity1 : collisions) {
 			if (entity1.getSymbol().equals("P")) {
-				entity1.setActive(false);
+				entity1.die();
 				map.removeEntity(entity1);
-				tank.getPowerUp();
+				// tank.getPowerUp();
 			}
 
 		}
