@@ -3,15 +3,14 @@ package model;
 import controller.Dimension;
 import model.Orientation.Orientation;
 
-public class Wall extends Entity {
+public class PowerUp extends Entity {
 
-	private static final String SYMBOL = "W";
-	private static final Dimension DIMENSION = new Dimension(2, 0);
-	// private static final Position POSITION = ;
+	private static final String SYMBOL = "P";
+	private static final Dimension DIMENSION = new Dimension(0, 0);
 	private Position newPosition;
 	private Orientation newOrientation;
 
-	public Wall(Position position) {
+	public PowerUp(Position position) {
 		super(SYMBOL, position, DIMENSION);
 
 	}
@@ -34,7 +33,7 @@ public class Wall extends Entity {
 
 	@Override
 	public boolean isObstacle() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -44,7 +43,11 @@ public class Wall extends Entity {
 
 	@Override
 	public boolean receptiveToDamage() {
-		return true;
+		return false;
+	}
+
+	public void activateDefense() {
+		setLife(20);
 	}
 
 }

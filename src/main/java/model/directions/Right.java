@@ -20,4 +20,14 @@ public class Right extends Direction {
 		return new Position(position.getX() + 1, position.getY());
 	}
 
+	@Override
+	public Position setPositionBullet(Position position) {
+		return new Position(position.getX() + 1, position.getY());
+	}
+
+	@Override
+	public String setSymbolBullet() {
+		return "→";
+	}
+
 }

@@ -11,4 +11,18 @@ public class Tank extends Movable {
 		super(SYMBOL, position, DIMENSION);
 	}
 
+	@Override
+	public Bullet shoot() {
+		Bullet bullet = new Bullet(getDirection().setPositionBullet(getPosition()));
+		bullet.setDirection(getDirection());
+		bullet.setSymbol(new String(getDirection().setSymbolBullet()));
+		return bullet;
+	}
+
+	@Override
+	public void printDetails() {
+		System.out.print("Life " + getLife());
+		System.out.println("     powerUp ");
+	}
+
 }

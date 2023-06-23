@@ -19,6 +19,8 @@ public class Listener {
 		this.board = board;
 		this.player = player;
 		this.level = level;
+		// quitar parametros de constructor
+		// cada player deberia tener su propio keylistener
 		keyEvents(window.getTextField());
 	}
 
@@ -40,8 +42,8 @@ public class Listener {
 			@Override
 			public void keyPressed(KeyEvent key) {
 
-				player.move(key);
-				board.move(level.getTank());
+				player.doAction(key);
+				board.move(level.getTank()); // q lo haga el player
 
 			}
 

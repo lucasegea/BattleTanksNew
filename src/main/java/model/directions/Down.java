@@ -20,4 +20,14 @@ public class Down extends Direction {
 		return new Position(position.getX(), position.getY() + 1);
 	}
 
+	@Override
+	public Position setPositionBullet(Position position) {
+		return new Position(position.getX(), position.getY() + 1);
+	}
+
+	@Override
+	public String setSymbolBullet() {
+		return "↓";
+	}
+
 }

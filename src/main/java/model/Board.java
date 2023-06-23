@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import view.ClearConsole;
+import view.DetailsViewGame;
 
 public class Board {
 	// List <String> list = new ArrayList<String>();
@@ -22,42 +23,60 @@ public class Board {
 		}
 	}
 
-	public void move(Movable entity) {
-		if (checkBoundsOfBoard(entity) && checkCollisions(getColisionsEntities(entity))) {
+	public boolean move(Movable entity) {
+		if (checkBoundsOfBoard(entity) && checkCollisions(ControllCollisionsEntities(entity)) && entity.getActive()) {
 			remove(entity);
 			entity.movePosition();
 			addEntity(entity);
+			return true;
 		}
+		return false;
 	}
 
 	public boolean checkBoundsOfBoard(Movable entity) {
-		return entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() <= Constants.BOARD_WIDTH
-				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT - 1;
 
+		if (entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() < Constants.BOARD_WIDTH
+				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT) {
+			return true;
+		}
+		entity.registerInteraction();
+		return false;
 	}
 
-	public Collection<Entity> getColisionsEntities(Entity entity) {
-		Collection<Entity> colisionsList = new HashSet<>();
+	public Collection<Entity> ControllCollisionsEntities(Movable movable) {
+		Collection<Entity> collisions = new HashSet<>();
 
-		for (int y = entity.getPotencialMinorY(); y <= entity.getPotencialMajorY(); y++) {
-			for (int x = entity.getPotencialMinorX(); x <= entity.getPotencialMajorX(); x++) {
-				if (!(matrix[y][x].getEntity() == null)) {
-					colisionsList.add(matrix[y][x].getEntity());
-				}
+		for (int y = movable.getPotencialMinorY(); y <= movable.getPotencialMajorY(); y++) {
+			for (int x = movable.getPotencialMinorX(); x <= movable.getPotencialMajorX(); x++) {
+				collisions.addAll(matrix[y][x].getEntities());
 			}
 		}
-		colisionsList.remove(entity);
-		return colisionsList;
+		collisions.remove(movable);
+
+		for (Entity entity : collisions) {
+			movable.registerInteraction(entity);
+		}
+
+		return collisions;
 	}
 
 	public boolean checkCollisions(Collection<Entity> colisionsList) {
+
 		if (colisionsList.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 
-	private void remove(Movable entity) {
+	public void remove(Movable entity) {
+		for (int y = entity.getMinorY(); y <= entity.getMajorY(); y++) {
+			for (int x = entity.getMinorX(); x <= entity.getMajorX(); x++) {
+				matrix[y][x].removeEntity(entity);
+			}
+		}
+	}
+
+	public void removeEntity(Entity entity) {
 		for (int y = entity.getMinorY(); y <= entity.getMajorY(); y++) {
 			for (int x = entity.getMinorX(); x <= entity.getMajorX(); x++) {
 				matrix[y][x].removeEntity(entity);
@@ -74,14 +93,13 @@ public class Board {
 	}
 
 	public void appendEntity(Entity entity) {
-		// if (checkBoundsOfBoard((Movable) entity)) {
 		addEntity(entity);
-		// }
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+		new DetailsViewGame();
 		for (Square[] column : matrix) {
 			for (Square square : column) {
 				builder.append("[" + square.drawSymbol() + "]");

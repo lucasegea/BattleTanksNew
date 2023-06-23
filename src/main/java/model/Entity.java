@@ -5,12 +5,13 @@ import model.Orientation.Orientation;
 import model.Orientation.Vertical;
 
 public abstract class Entity implements Showable {
-	private final String symbol;
+	private String symbol;
 	protected Position position;
 	protected Dimension dimension;
-	private Position newPosition;
 	public Orientation orientation = Vertical.getInstance();
-	private Orientation newOrientation;
+	private int life = 2;
+	public boolean canmove = true;
+	private boolean active = true;
 
 	public Entity(String symbol, Position position, Dimension dimension) {
 		this.symbol = symbol;
@@ -22,6 +23,10 @@ public abstract class Entity implements Showable {
 	@Override
 	public String getSymbol() {
 		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
 	}
 
 	public Dimension getDimension() {
@@ -48,48 +53,46 @@ public abstract class Entity implements Showable {
 		return position.getY() + orientation.getHorizontalRadius(dimension);
 	}
 
-	public int getPotencialMinorX() {
-		return newPosition.getX() - newOrientation.getVerticalRadius(dimension);
-	}
-
-	public int getPotencialMajorX() {
-		return newPosition.getX() + newOrientation.getVerticalRadius(dimension);
-	}
-
-	public int getPotencialMinorY() {
-		return newPosition.getY() - newOrientation.getHorizontalRadius(dimension);
-	}
-
-	public int getPotencialMajorY() {
-		return newPosition.getY() + newOrientation.getHorizontalRadius(dimension);
-	}
-
 	public void setPosition(Position position) {
 		this.position = position;
-	}
-
-	public Position getNewPosition() {
-		return newPosition;
-	}
-
-	public void setNewPosition(Position newPosition) {
-		this.newPosition = newPosition;
-	}
-
-	public void setNewOrientation(Orientation newOrientation) {
-		this.newOrientation = newOrientation;
 	}
 
 	public Orientation getOrientation() {
 		return orientation;
 	}
 
-	public Orientation getNewOrientation() {
-		return newOrientation;
-	}
-
 	public void setOrientation(Orientation newOrientation) {
 		orientation = newOrientation;
 	}
 
+	public void setLife(int i) {
+		life = life + i;
+		if (getLife() == 0) {
+			setActive(false);
+			Game.getInstance().getLevel().getMap().removeEntity(this);
+		}
+	}
+
+	public int getLife() {
+		return life;
+	}
+
+	public boolean isObstacle() {
+		return true;
+	}
+
+	public abstract boolean makeDamage();
+
+	public abstract boolean receptiveToDamage();
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setCanMove(boolean canmove) {
+		this.canmove = canmove;
+	}
+
+	public void printDetails() {
+	}
 }

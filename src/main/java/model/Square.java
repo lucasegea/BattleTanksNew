@@ -1,13 +1,12 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 public class Square {
 
-	private final Collection<Entity> entities = new ArrayList<>();
-	private Entity entity;
+	private final Collection<Entity> entities = new HashSet<>();
 
 	public Square() {
 
@@ -21,23 +20,22 @@ public class Square {
 
 	public void addEntity(Entity entity) {
 		entities.add(entity);
-		this.entity = entity;
 	}
 
 	public Collection<Entity> getEntities() {
 		return entities;
 	}
 
-	public Entity getEntity() {
-		return entity;
-	}
-
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
+		// entity.setRemoved(true);
 	}
 
 	public boolean contains(Entity entity) {
 		return entities.contains(entity);
 	}
 
+	public boolean isEmpty() {
+		return entities.isEmpty();
+	}
 }

@@ -13,7 +13,11 @@ public abstract class Direction {
 
 	public abstract Position apply(Position position);
 
-	public Orientation getNewOrientation() {
+	public abstract Position setPositionBullet(Position position);
+
+	public abstract String setSymbolBullet();
+
+	public Orientation getOrientation() {
 		return orientation;
 	}
 }

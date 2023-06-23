@@ -9,19 +9,24 @@ public class Controller {
 
 	public Controller() {
 		Game.getInstance().initialize();
-	}
 
-	public void Run() throws InterruptedException {
-
-		while (true) {
-			update();
-		}
 	}
 
 	private void update() throws InterruptedException {
 		ClearConsole.clearConsole();
 		System.out.println(Game.getInstance().getLevel().getMap());
 		Thread.sleep(125);
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				update();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }
