@@ -34,6 +34,11 @@ public class Bullet extends Movable {
 	}
 
 	@Override
+	public boolean isObstacle() {
+		return false;
+	}
+
+	@Override
 	public InteractionResult interact(Entity otherEntity) {
 		if (otherEntity.isObstacle()) {
 			die();

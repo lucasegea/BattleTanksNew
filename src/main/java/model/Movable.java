@@ -9,6 +9,7 @@ public class Movable extends Entity {
 	private Position newPosition;
 	private Orientation newOrientation;
 	protected Direction direction;
+	private Boolean receptiveToDamage = true;
 
 	public Movable(String symbol, Position position, Dimension dimension) {
 		super(symbol, position, dimension);
@@ -74,7 +75,11 @@ public class Movable extends Entity {
 
 	@Override
 	public boolean receptiveToDamage() {
-		return true;
+		return receptiveToDamage;
+	}
+
+	public void setReceptiveToDamage(Boolean receptiveToDamage) {
+		this.receptiveToDamage = receptiveToDamage;
 	}
 
 	public InteractionResult interact(Entity otherEntity) {

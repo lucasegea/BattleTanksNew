@@ -14,6 +14,7 @@ public class Controller {
 
 	private void update() throws InterruptedException {
 		ClearConsole.clearConsole();
+		Game.getInstance().getLevel().getAndPrintParameters();
 		System.out.println(Game.getInstance().getLevel().getMap());
 		Thread.sleep(125);
 	}

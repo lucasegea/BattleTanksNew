@@ -94,4 +94,8 @@ public abstract class Entity implements Showable {
 
 	public void printDetails() {
 	}
+
+	protected void interact(Tank tank) {
+
+	}
 }

@@ -35,5 +35,6 @@ public class HumanPlayer extends Player {
 
 	public HumanPlayer(Tank tank) {
 		this.tank = tank;
+		tank.setIsHuman(true);
 	}
 }

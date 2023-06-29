@@ -3,10 +3,8 @@ package model;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.Interaction.Interaction;
 import model.Interaction.InteractionManager;
 import view.ClearConsole;
-import view.DetailsViewGame;
 
 public class Board {
 	// List <String> list = new ArrayList<String>();
@@ -29,9 +27,8 @@ public class Board {
 		if (willBeInBounds(movable)) {
 			InteractionManager interactionManager = new InteractionManager();
 			for (Entity entity : getCollisions(movable)) {
-				interactionManager.add(new Interaction(movable, entity));
+				interactionManager.add(movable.interact(entity));
 			}
-			interactionManager.doActions();
 			if (interactionManager.canMove()) {
 				remove(movable);
 				movable.movePosition();
@@ -61,6 +58,7 @@ public class Board {
 		return entity.getPotencialMinorX() >= 0 && entity.getPotencialMajorX() < Constants.BOARD_WIDTH
 				&& entity.getPotencialMinorY() >= 0 && entity.getPotencialMajorY() < Constants.BOARD_HEIGHT;
 	}
+
 	public void remove(Movable entity) {
 		for (int y = entity.getMinorY(); y <= entity.getMajorY(); y++) {
 			for (int x = entity.getMinorX(); x <= entity.getMajorX(); x++) {
@@ -92,7 +90,7 @@ public class Board {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		new DetailsViewGame();
+
 		for (Square[] column : matrix) {
 			for (Square square : column) {
 				builder.append("[" + square.drawSymbol() + "]");

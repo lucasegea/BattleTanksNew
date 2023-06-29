@@ -6,17 +6,11 @@ import java.util.HashSet;
 import model.InteractionResult;
 
 public class InteractionManager {
-	Collection<Interaction> interactions = new HashSet<>();
+
 	Collection<InteractionResult> interactionResults = new HashSet<>();
 
-	public void add(Interaction interaction) {
-		interactions.add(interaction);
-	}
-
-	public void doActions() {
-		for (Interaction interaction : interactions) {
-			interactionResults.add(interaction.interact());
-		}
+	public void add(InteractionResult interactionResult) {
+		interactionResults.add(interactionResult);
 	}
 
 	public boolean canMove() {
